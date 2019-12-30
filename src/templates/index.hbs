@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <!--fontovi-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+    integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+  <title>M auto - pocetna strana</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+      M auto
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sadrzajNAVIGACIJA">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sadrzajNAVIGACIJA">
+      <ul class="navbar-nav nav justify-content-end">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Početna</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pretraga">Pretraga</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin"><i class="fas fa-user mr-2"></i>Admin</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <!-- END OF NAV -->
+  <div class="container">
+
+  <div class="jumbotron">
+    <h2>Dobrodošli na M-auto</h2>
+    <p class="lead">
+      Pogledajte našu ponudu vozila raznih vrsta, marki, snaga. Sigurni smo da ćete pronaći pravi model za Vas i Vašu porodicu.
+    </p>
+  </div>
+
+    <div class="row">
+      {{#each automobil}}
+      <div class="col-lg-4 col-md-6 my-3">
+        <div class="card">
+          <div class="card-body flex-column d-flex">
+
+            <img src="{{this.slika}}" alt="Slika neuspesno procitana" class="figure-img img-fluid rounded">
+            <h4 class="text-center">{{this.marka}} {{this.model}}</h4>
+
+              <ul class="list-group list-group-flush mb-5">
+                <li class="list-group-item">Snaga: {{this.snaga}}ks</li>
+                <li class="list-group-item">Karoserija: {{this.karoserija}}</li>
+                <li class="list-group-item">Vrsta goriva: {{this.gorivo}}</li>
+                <li class="list-group-item">Kubikaza: {{this.kubikaza}}</li>
+                <li class="list-group-item">Cena: {{this.cena}}&euro;</li>
+
+              </ul>
+
+                <a href="https://www.google.com/search?q={{this.marka}}+{{this.model}}" target="_blank" class="btn btn-primary mt-auto">Pročitaj više </a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="bg-primary text-white mt-5 container-fluid">
+    <div class="row mt-5">
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <p class="lead text-center font-weight-bold">
+          markonrt-40/16 &copy; 2019
+        </p>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold active " href="/">Pocetna</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold" href="/pretraga">Pretraga</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-sm-4 offset-sm-4 offset-md-0 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-facebook-f"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-instagram"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-youtube"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+ <!-- JS -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+</body>
+
+</html>

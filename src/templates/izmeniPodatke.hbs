@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <!--fontovi-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <title>M auto - izmena podataka</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+      M auto
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sadrzajNAVIGACIJA">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sadrzajNAVIGACIJA">
+      <ul class="navbar-nav nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Početna</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pretraga">Pretraga</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/dodajVozilo"><i class="fa fa-plus-circle" aria-hidden="true"></i> Dodaj vozilo</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/izmeniPodatke"><i class="fa fa-cog" aria-hidden="true"></i> Izmeni podatke o
+            vozilima</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/adminGlavniPanel">Admin Panel</a>
+        </li>
+        <li class="nav-item">
+          <a id="odjava" class="nav-link" href="/">Odjavi se<i class="fas fa-sign-out-alt ml-2"
+              aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- END OF NAV -->
+  <div class="container">
+
+    <div class="jumbotron">
+      <div id="naslovIzmene" class="row">
+        <div class="col-sm-8">
+          <h2>Izmena podataka o vozilima</h2>
+        </div>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="modelPretraga" placeholder="Pretraga po modelu..."
+            onchange="pretrazi(this.value)">
+        </div>
+      </div>
+
+
+      <div id="formaZaPodatke">
+
+      </div>
+      <div class="row">
+        <div id="napredakUploada" class="offset-sm-6 col-sm-6">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="prikazAutomobila">
+      {{#each automobil}}
+      <div class="col-lg-4 col-md-6 my-3">
+        <div class="card">
+          <div class="card-body flex-column d-flex">
+
+            <img src="{{this.slika}}" alt="Slika neuspesno procitana" class="figure-img img-fluid rounded">
+            <h4 class="text-center">{{this.marka}} {{this.model}}</h4>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Snaga: {{this.snaga}}ks</li>
+              <li class="list-group-item">Karoserija: {{this.karoserija}}</li>
+              <li class="list-group-item">Vrsta goriva: {{this.gorivo}}</li>
+              <li class="list-group-item">Kubikaza: {{this.kubikaza}}</li>
+              <li class="list-group-item">Cena: {{this.cena}}&euro;</li>
+            </ul>
+            <a id="{{this.id}}" class="btn btn-danger text-white mt-auto" onclick="izmeniPodatke(this)"><i
+                class="fas fa-cog"></i> Izmeni podatke</a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="bg-primary text-white mt-5 container-fluid">
+    <div class="row mt-5">
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <p class="lead text-center font-weight-bold">
+          markonrt-40/16 &copy; 2019
+        </p>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold active " href="/">Pocetna</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold" href="/pretraga">Pretraga</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-sm-4 offset-sm-4 offset-md-0 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-facebook-f"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-instagram"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-youtube"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JS -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <script>
+    let idAUta;
+
+
+    function izmeniPodatke(dugme) {
+      window.scroll(0, 0);
+      idAuta = dugme.id;
+      formaZaPodatke = document.querySelector("#formaZaPodatke");
+
+      $.ajax({
+        url: "/api/vratiPodatkeOVozilu",
+        method: "POST",
+        data: {
+          "id": idAuta
+        },
+        success: function (response) {
+          let automobil = JSON.parse(response);
+          formaZaPodatke.innerHTML = "";
+
+          formaZaPodatke.innerHTML += `<div class="row">
+                        <div class="col-sm-6">
+                            <form class="mt-3">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="marka">Marka</label>
+                            <input type="text" class="form-control" id="marka" value="${automobil.marka}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="model">Model</label>
+                            <input type="text" class="form-control" id="model" value="${automobil.model}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="kubikaza">Kubikaža</label>
+                            <input type="text" class="form-control" id="kubikaza" value="${automobil.kubikaza}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="snaga">Snaga</label>
+                            <input type="text" class="form-control" id="snaga" value="${automobil.snaga}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="cena">Cena</label>
+                            <input type="text" class="form-control" id="cena" value="${automobil.cena}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="karoserija">Karoserija</label>
+                            <select id="karoserija" class="form-control">
+                              <option>Hecbek</option>
+                              <option>Limuzina</option>
+                              <option>Monovolumen</option>
+                              <option>Karavan</option>
+                              <option>SUV</option>
+                              <option>Pick up</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="gorivo">Gorivo</label>
+                            <select id="gorivo" class="form-control">
+                              <option>Benzin</option>
+                              <option>Dizel</option>
+                            </select>
+                            <a onclick="funkcijaZaIzmenu(${automobil.id})" class="btn btn-danger btn-lg text-white mt-5"><i class="fas fa-sync-alt"></i></i> Izmeni podatke</a>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="unetaSlika">Slika modela</label>
+                            <input id="unetaSlika" type='file' name='uploaded_file' class="form-control-file" onchange="prikaziSliku()">
+                          </div>
+                        </div>
+                      </form>
+                          </div>
+                          <div class="col-sm-6 text-center mt-5">
+                              <img id="prikazanaSlika" class="img-fluid" src="${automobil.slika}">
+                          </div>
+                    </div>`;
+
+          let gorivo = document.querySelector("#gorivo");
+          gorivo.value = automobil.gorivo;
+          let karoserija = document.querySelector("#karoserija");
+          karoserija.value = automobil.karoserija;
+
+
+
+
+
+        } //ovo je kraj success
+      });
+    }
+
+
+
+    //OVO NE DIRAJ
+    function prikaziSliku() { //samo za preview slike
+      let prikazanaSlika = document.querySelector("#prikazanaSlika");
+      let unetaSlika = document.querySelector('input[type=file]').files[0];
+      let citac = new FileReader();
+
+
+      citac.onloadend = function () {
+        prikazanaSlika.src = citac.result;
+      }
+
+      if (unetaSlika) {
+        citac.readAsDataURL(unetaSlika); //reads the data as a URL
+      } else {
+        prikazanaSlika.src = "";
+      }
+    }
+
+
+
+
+
+
+
+
+
+    function funkcijaZaIzmenu(id) {
+      var fd = new FormData();
+      //fd.append('uploaded_file', unetaSlika.files[0]);
+      fd.append('uploaded_file', document.querySelector('input[type=file]').files[0]);
+
+      naslovIzmene = document.querySelector("#naslovIzmene");
+      formaZaPodatke = document.querySelector("#formaZaPodatke");
+
+
+      let marka = document.querySelector("#marka").value;
+      let model = document.querySelector("#model").value;
+      let kubikaza = document.querySelector("#kubikaza").value;
+      let snaga = document.querySelector("#snaga").value;
+      let cena = document.querySelector("#cena").value;
+      let karoserija = document.querySelector("#karoserija").value;
+      let gorivo = document.querySelector("#gorivo").value;
+
+      if (isNaN(cena) || isNaN(snaga) || isNaN(kubikaza)) {
+        alert("Cena, snaga i kubikaza moraju biti broj!");
+      } else {
+        let napredakUploada = document.querySelector("#napredakUploada");
+        napredakUploada.innerHTML = "";
+        napredakUploada.innerHTML += `<div class="progress" style="height: 20px;">
+              <div id="bar" class="progress-bar-striped bg-danger" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>`;
+        let bar = document.querySelector("#bar");
+
+
+        setTimeout(function () { bar.style = "width: 45%;"; }, 500);
+        setTimeout(function () { bar.style = "width: 75%;"; }, 1000);
+
+        if (document.querySelector('input[type=file]').files.length != 0) {
+          $.ajax({
+            url: "/api/izmenaSlike",
+            data: fd,
+            processData: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            type: "POST",
+            success: function (response) {
+            }
+          });
+
+        }
+
+
+        $.ajax({
+          url: "/api/izmenaKarakteristika",
+          type: "POST",
+          data: {
+            "id": id,
+            "marka": marka,
+            "model": model,
+            "kubikaza": kubikaza,
+            "snaga": snaga,
+            "cena": cena,
+            "karoserija": karoserija,
+            "gorivo": gorivo
+          },
+          success: function (response) {
+            let vreme = parseInt(response);
+           
+
+            formaZaPodatke.innerHTML = "";
+            naslovIzmene.innerHTML = "";
+            naslovIzmene.innerHTML += `<div class="col-sm-8">
+          <h2>Izmenite podatke za još vozila?</h2>
+        </div>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="modelPretraga" placeholder="Pretraga po modelu..." onchange="pretrazi(this.value)">
+        </div>`;
+            bar.style = "width: 100%;";
+            alert("Uspesno izmenjeni podaci!");
+            napredakUploada.innerHTML = "";
+            setTimeout(function () { location.reload(); }, vreme*1000);
+
+
+          }
+        });
+
+
+      }
+
+    }
+
+
+    function pretrazi(modelZaPretragu) {
+      $.ajax({
+        url: "/api/izmenaPretraga",
+        type: "POST",
+        data: {
+          "model": modelZaPretragu
+        },
+        success: function (response) {
+          let prikazAutomobila = document.querySelector("#prikazAutomobila");
+          prikazAutomobila.innerHTML = "";
+          let automobili = JSON.parse(response);
+
+          for (let a of automobili) {
+            prikazAutomobila.innerHTML += `<div class="col-lg-4 col-md-6 my-3">
+        <div class="card">
+          <div class="card-body flex-column d-flex">
+
+            <img src="${a.slika}" alt="Slika neuspesno procitana" class="figure-img img-fluid rounded">
+            <h4 class="text-center">${a.marka} ${a.model}</h4>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Snaga: ${a.snaga}ks</li>
+              <li class="list-group-item">Karoserija: ${a.karoserija}</li>
+              <li class="list-group-item">Vrsta goriva: ${a.gorivo}</li>
+              <li class="list-group-item">Kubikaza: ${a.kubikaza}</li>
+              <li class="list-group-item">Cena: ${a.cena}&euro;</li>
+            </ul>
+              <a id="${a.id}" class="btn btn-danger text-white mt-auto" onclick="izmeniPodatke(this)"><i
+                  class="fas fa-cog"></i> Izmeni podatke</a>
+          </div>
+        </div>
+      </div>`;
+          }
+
+        }
+      });
+    }
+
+
+
+    if (!localStorage.getItem("loggedIn")) {
+
+      window.location.href = "/admin";
+    }
+
+    let btn = document.querySelector("#odjava");
+
+    btn.addEventListener("click", function () {
+      localStorage.removeItem("loggedIn");
+      window.location.href = "/admin";
+    })
+
+  </script>
+
+
+</body>
+
+</html>

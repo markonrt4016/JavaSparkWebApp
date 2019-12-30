@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <!--fontovi-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+    integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+  <title>M auto - dodaj vozilo</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+      M auto
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sadrzajNAVIGACIJA">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sadrzajNAVIGACIJA">
+      <ul class="navbar-nav nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Početna</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pretraga">Pretraga</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dodajVozilo"><i class="fa fa-plus-circle" aria-hidden="true"></i> Dodaj vozilo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/izmeniPodatke"><i class="fa fa-cog" aria-hidden="true"></i> Izmeni podatke o
+            vozilima</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/adminGlavniPanel">Admin Panel</a>
+        </li>
+        <li class="nav-item">
+          <a id="odjava" class="nav-link" href="/">Odjavi se<i class="fas fa-sign-out-alt ml-2"
+              aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- END OF NAV -->
+  <div class="container">
+
+    <div class="jumbotron">
+      <h3>Dodavanje novog vozila</h3>
+      <p class="lead">
+        Popunite polja ispod i dodajte novi auto u online prodavnicu.
+      </p>
+    </div>
+
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="marka">Marka</label>
+          <input type="text" class="form-control" id="marka">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="model">Model</label>
+          <input type="text" class="form-control" id="model">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="kubikaza">Kubikaža</label>
+          <input type="text" class="form-control" id="kubikaza" placeholder="1.5, 1.8, 2.0...">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="snaga">Snaga</label>
+          <input type="text" class="form-control" id="snaga" placeholder="U ks...">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cena">Cena</label>
+          <input type="text" class="form-control" id="cena" placeholder="U evrima...">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="karoserija">Karoserija</label>
+          <select id="karoserija" class="form-control">
+            <option selected>Hecbek</option>
+            <option>Limuzina</option>
+            <option>Karavan</option>
+            <option>Monovolumen</option>
+            <option>SUV</option>
+            <option>Pick up</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="gorivo">Gorivo</label>
+          <select id="gorivo" class="form-control">
+            <option selected>Benzin</option>
+            <option>Dizel</option>
+          </select>
+          <a id="dugmeDodaj" class="btn btn-success btn-lg text-white mt-5"><i class="fa fa-plus-circle"
+              aria-hidden="true"></i>Dodaj
+            vozilo</a>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="unetaSlika">Slika modela</label>
+          <input id="unetaSlika" type='file' name='uploaded_file' class="form-control-file">
+
+          <!--progres bar-->
+          <div id="napredakUploada" class="mt-5">
+
+          </div>
+
+          <div id="greskePrikaz">
+
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="bg-primary text-white mt-5 container-fluid">
+    <div class="row mt-5">
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <p class="lead text-center font-weight-bold">
+          markonrt-40/16 &copy; 2019
+        </p>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold active " href="/">Pocetna</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold" href="/pretraga">Pretraga</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-sm-4 offset-sm-4 offset-md-0 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-facebook-f"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-instagram"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-youtube"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JS -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <script>
+    let dugmeDodaj = document.querySelector("#dugmeDodaj");
+    //polja iz forme
+    let marka = document.querySelector("#marka");
+    let model = document.querySelector("#model");
+    let kubikaza = document.querySelector("#kubikaza");
+    let snaga = document.querySelector("#snaga");
+    let cena = document.querySelector("#cena");
+    let karoserija = document.querySelector("#karoserija");
+    let gorivo = document.querySelector("#gorivo");
+
+    dugmeDodaj.addEventListener('click', function () {
+
+      let unetaSlika = document.querySelector("#unetaSlika");
+
+      let greske = [];
+
+      if (unetaSlika.files.length == 0) {
+        greske.push("greska1");
+      }
+      if (marka.value == "") {
+        greske.push("greska1");
+      }
+      if (model.value == "") {
+        greske.push("greska2");
+      }
+      if (kubikaza.value == "") {
+        greske.push("greska3");
+      }
+      if (snaga.value == "") {
+        greske.push("greska4");
+      }
+      if (cena.value == "") {
+        greske.push("greska5");
+      }
+
+      if (greske.length > 0) {
+        alert("Morate popuniti sve podatke!");
+      }
+      else if (isNaN(cena.value) || isNaN(snaga.value) || isNaN(kubikaza.value)) {
+        alert("Cena, snaga i kubikaza moraju biti broj!");
+      }
+      else {
+
+        $.ajax({
+          url: "/api/proveraDaLiPostoji",
+          type: "POST",
+          data: {
+            "marka": marka.value,
+            "model": model.value
+          },
+          success: function (response) {
+            if (response == "ne postoji") {
+              let napredakUploada = document.querySelector("#napredakUploada");
+              napredakUploada.innerHTML = "";
+              napredakUploada.innerHTML += `<div class="progress" style="height: 20px;">
+            <div id="bar" class="progress-bar-striped bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>`;
+              let bar = document.querySelector("#bar");
+              setTimeout(function () { bar.style = "width: 45%;"; }, 500);
+              setTimeout(function () { bar.style = "width: 75%;"; }, 1000);
+
+
+
+              let fd = new FormData();
+              fd.append('uploaded_file', unetaSlika.files[0]);
+
+
+              $.ajax({
+                url: "/api/uploadSlike",
+                data: fd,
+                processData: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                type: "POST",
+                success: function (response) {
+                  bar.style = "width: 100%;";
+                  alert("Automobil uspesno dodat!");
+
+                  napredakUploada.innerHTML = "";
+                  marka.value = "";
+                  model.value = "";
+                  kubikaza.value = "";
+                  snaga.value = "";
+                  cena.value = "";
+                  karoserija.value = "Hecbek";
+                  gorivo.value = "Benzin";
+                  unetaSlika.value = "";
+                }
+              });
+
+              $.ajax({
+                url: "/api/uploadKarakteristika",
+                type: "POST",
+                data: {
+                  "marka": marka.value,
+                  "model": model.value,
+                  "kubikaza": kubikaza.value,
+                  "snaga": snaga.value,
+                  "cena": cena.value,
+                  "karoserija": karoserija.value,
+                  "gorivo": gorivo.value
+                },
+                success: function (response) {
+                }
+              });
+            }
+            else {
+              alert("Dati model vec postoji!");
+            }
+          }
+        });
+
+      }
+
+    });
+
+    if (!localStorage.getItem("loggedIn")) {
+      window.location.href = "/admin";
+    }
+
+    let btn = document.querySelector("#odjava");
+
+    btn.addEventListener("click", function () {
+      localStorage.removeItem("loggedIn");
+      window.location.href = "/admin";
+    })
+
+
+  </script>
+
+
+</body>
+
+</html>

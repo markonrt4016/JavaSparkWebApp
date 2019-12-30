@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <!--fontovi-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+    integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+  <title>M AUTO - admin</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+      M auto
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sadrzajNAVIGACIJA">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sadrzajNAVIGACIJA">
+      <ul class="navbar-nav nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Početna</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pretraga">Pretraga</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/admin"><i class="fas fa-user mr-2"></i>Admin</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <!-- END OF NAV -->
+  <div class="text-center justify-content-center">
+    <form class="form-signin">
+      <i class="fas fa-user fa-7x mb-3 text-primary"></i>
+      <!--<h1 class="h3 mb-3 font-weight-normal">Dobrodošli!</h1>-->
+      <input type="text" id="username" class="form-control" placeholder="Korisničko ime" required autofocus />
+      <input type="password" id="password" class="form-control" placeholder="Lozinka" required />
+
+      <a id="dugme" class="btn btn-lg btn-primary btn-block text-white">Prijavi se</a>
+    </form>
+  </div>
+
+
+
+  <div class="bg-primary text-white mt-5 container-fluid">
+    <div class="row mt-5">
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <p class="lead text-center font-weight-bold">
+          markonrt-40/16 &copy; 2019
+        </p>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold active " href="/">Pocetna</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link footer-links text-white font-weight-bold" href="/pretraga">Pretraga</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-sm-4 offset-sm-4 offset-md-0 col-md-4 mt-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-facebook-f"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-instagram"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="fab icon fa-youtube"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JS -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <script>
+    function login(){
+      let username = document.querySelector("#username").value;
+      let password = document.querySelector("#password").value;
+
+      if (username!="" && password!="") {
+        $.ajax({
+          type: "POST",
+          url: "/login",
+          data: { 
+            "username": username, 
+            "password":  password
+          },
+          success: function (response) {
+            console.log(response)
+            if (response === "ok") {
+              localStorage.setItem("loggedIn", response);
+              window.location.href = "/adminGlavniPanel";
+            }
+            else{
+              alert("Pogresno username ili password!");
+            }
+
+          }
+        });
+
+      } else {
+        alert("Morate uneti username i password!");
+      }
+    }
+
+
+    let btn = document.querySelector("#dugme");
+    btn.addEventListener("click", login);
+
+  </script>
+
+
+</body>
+
+</html>
